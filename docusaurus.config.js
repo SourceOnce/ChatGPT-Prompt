@@ -13,15 +13,15 @@ const config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://www.aishort.top",
+  url: "https://prompt.one-ai.world",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "rockbenben", // Usually your GitHub org/user name.
-  projectName: "ChatGPT-Shortcut", // Usually your repo name.
+  organizationName: "SourceOne", // Usually your GitHub org/user name.
+  projectName: "ChatGPT-Prompt", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -91,7 +91,7 @@ const config = {
         hideOnScroll: true,
         title: "AI Short",
         logo: {
-          alt: "ChatGPT Shortcuts",
+          alt: "ChatGPT Prompt",
           src: "img/logo.svg",
         },
         items: [
@@ -99,21 +99,6 @@ const config = {
             to: "docs",
             label: "使用说明",
             position: "left",
-          },
-          {
-            type: 'dropdown',
-            label: '浏览器扩展',
-            position: 'left',
-            items: [
-              {
-                label: "Chrome 扩展",
-                href: "https://chrome.google.com/webstore/detail/chatgpt-shortcut/blcgeoojgdpodnmnhfpohphdhfncblnj",
-              },
-              {
-                label: 'Edge 扩展',
-                href: 'https://microsoftedge.microsoft.com/addons/detail/chatgpt-shortcut/hnggpalhfjmdhhmgfjpmhlfilnbmjoin',
-              },
-            ],
           },
           {
             type: 'dropdown',
@@ -138,22 +123,7 @@ const config = {
               },
             ],
           },
-          {
-            to: "https://www.aishort.top/feedback",
-            label: "反馈",
-            position: "left",
-          },
           { type: "localeDropdown", position: "right" },
-          {
-            href: "https://github.com/rockbenben/ChatGPT-Shortcut",
-            position: "right",
-            className: "header-github-link",
-          },
-          {
-            href: "https://discord.gg/PZTQfJ4GjX",
-            position: "right",
-            className: "header-discord-link",
-          },
         ],
       },
       footer: {

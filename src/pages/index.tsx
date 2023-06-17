@@ -89,18 +89,18 @@ function filterUsers(
   operator: Operator,
   searchName: string | null
 ) {
+  const { i18n } = useDocusaurusContext();
+  const currentLanguage = i18n.currentLocale.split('-')[0];
   if (searchName) {
     const lowercaseSearchName = searchName.toLowerCase();
     // eslint-disable-next-line no-param-reassign
     // 搜索范围
-    users = users.filter((user) =>
+    users = users.filter((user) => 
       (
-        user.title +
-        user.description +
-        user.desc_cn +
-        user.remark +
-        user.desc_en +
-        user.remark_en
+        user[currentLanguage].title +
+        user[currentLanguage].prompt +
+        (user[currentLanguage].description ?? "")  +
+        user[currentLanguage].remark
       )
         .toLowerCase()
         .includes(lowercaseSearchName)
@@ -179,7 +179,7 @@ function ShowcaseFilters({ onToggleDescription }) {
   const filteredUsers = useFilteredUsers();
   const siteCountPlural = useCallback(useSiteCountPlural(), []);
   const { i18n } = useDocusaurusContext();
-  const currentLanguage = i18n.currentLocale;
+  const currentLanguage = i18n.currentLocale.split('-')[0];
   return (
     <section className="container margin-top--l margin-bottom--lg">
       <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
@@ -277,7 +277,7 @@ function SearchBar() {
   const location = useLocation();
 
   const { i18n } = useDocusaurusContext();
-  const currentLanguage = i18n.currentLocale;
+  const currentLanguage = i18n.currentLocale.split('-')[0];
   const [value, setValue] = useState<string | null>(null);
   useEffect(() => {
     setValue(readSearchName(location.search));
@@ -308,7 +308,7 @@ function SearchBar() {
 
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
     if (
-      currentLanguage === "zh-Hans" &&
+      currentLanguage === "zh" &&
       (window.innerWidth >= 768 ||
         (typeof chrome !== "undefined" && chrome.extension))
     ) {
@@ -440,7 +440,7 @@ function ShowcaseCards({ isDescription }) {
               <ul className={clsx("clean-list", styles.showcaseList)}>
                 {favoriteUsers.map((user) => (
                   <ShowcaseCard
-                    key={user.title}
+                    key={user.zh.title}
                     user={user}
                     isDescription={isDescription}
                     copyCount={copyCounts[user.id] || 0}
@@ -460,7 +460,7 @@ function ShowcaseCards({ isDescription }) {
             <ul className={clsx("clean-list", styles.showcaseList)}>
               {otherUsers.map((user) => (
                 <ShowcaseCard
-                  key={user.title}
+                  key={user.zh.title}
                   user={user}
                   isDescription={isDescription}
                   copyCount={copyCounts[user.id] || 0}
@@ -481,7 +481,7 @@ function ShowcaseCards({ isDescription }) {
           <ul className={clsx("clean-list", styles.showcaseList)}>
             {filteredUsers.map((user) => (
               <ShowcaseCard
-                key={user.title}
+                key={user.zh.title}
                 user={user}
                 isDescription={isDescription}
                 copyCount={copyCounts[user.id] || 0}

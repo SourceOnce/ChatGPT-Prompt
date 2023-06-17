@@ -5,9 +5,9 @@ import UsersData from "./prompt.json";
 
 export const Tags: { [type in TagType]: Tag } = {
   favorite: {
-    label: translate({ message: "常用" }),
+    label: translate({ message: "收藏" }),
     description: translate({
-      message: "最多人使用的提示词",
+      message: "收藏",
       id: "showcase.tag.favorite.description",
     }),
     color: "#e9669e",
@@ -274,7 +274,7 @@ function sortUsers() {
   // Sort by prompt weight
   result = sortBy(result, (user) => -user.weight);
   // Sort by prompt title
-  result = sortBy(result, (user) => user.title.toLowerCase());
+  result = sortBy(result, (user) => user.zh.title.toLowerCase());
   // Sort by favorite tag, favorites first
   result = sortBy(result, (user) => !user.tags.includes("favorite"));
   return result;

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Card, Typography, Tag, Tooltip, Space, Badge, Row, Col } from "antd";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
@@ -10,8 +10,13 @@ import copy from "copy-text-to-clipboard";
 import styles from "./ShowcaseCard/styles.module.css";
 import { updateCopyCount } from "@site/src/api";
 import { Waline } from "@site/src/components/waline";
+import ShareButtons from './ShareButtons';
 
 function PromptPage({ prompt }) {
+  const [url, setUrl] = useState("");
+  useEffect(() => {
+    setUrl(window.location.href);
+  }, []);
   const { i18n } = useDocusaurusContext();
   const currentLanguage = i18n.currentLocale.split("-")[0];
   const title = prompt[currentLanguage].title;
@@ -132,6 +137,7 @@ function PromptPage({ prompt }) {
                   请在下方回复您对本提示词的意见、想法或分享。
                 </Translate>
               </Typography.Paragraph>{" "}
+              <ShareButtons shareUrl={url} title={`${title}: ${remark}`} popOver={true}/>
               <Waline {...walineOptions} />
             </Card>
           </li>

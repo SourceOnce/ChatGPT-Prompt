@@ -19,30 +19,28 @@ import { debounce } from "lodash";
 //import Link from "@docusaurus/Link";
 import Layout from "@theme/Layout";
 import FavoriteIcon from "@site/src/components/svgIcons/FavoriteIcon";
-import {
-  sortedUsers,
-  Tags,
-  TagList,
-  type User,
-  type TagType,
-} from "@site/src/data/users";
+import { Tags, TagList, type User, type TagType } from "@site/src/data/tags";
+import { sortedUsers } from "@site/src/data/users.zh";
 import Heading from "@theme/Heading";
 import ShowcaseTagSelect, {
   readSearchTags,
-} from "./_components/ShowcaseTagSelect";
+} from "@site/src/pages/_components/ShowcaseTagSelect";
 import ShowcaseFilterToggle, {
   type Operator,
   readOperator,
-} from "./_components/ShowcaseFilterToggle";
-import ShowcaseTooltip from "./_components/ShowcaseTooltip";
-import ShowcaseCard from "./_components/ShowcaseCard";
-import UserStatus from "./_components/UserStatus";
-import UserPrompts from "./_components/UserPrompts";
-import { AuthContext, AuthProvider } from "./_components/AuthContext";
-import ShareButtons from "./_components/ShareButtons";
+} from "@site/src/pages/_components/ShowcaseFilterToggle";
+import ShowcaseTooltip from "@site/src/pages/_components/ShowcaseTooltip";
+import ShowcaseCard from "@site/src/pages/_components/ShowcaseCard";
+import UserStatus from "@site/src/pages/_components/UserStatus";
+import UserPrompts from "@site/src/pages/_components/UserPrompts";
+import {
+  AuthContext,
+  AuthProvider,
+} from "@site/src/pages/_components/AuthContext";
+import ShareButtons from "@site/src/pages/_components/ShareButtons";
 import { fetchAllCopyCounts } from "@site/src/api";
 
-import styles from "./styles.module.css";
+import styles from "@site/src/pages/styles.module.css";
 
 const TITLE = translate({
   message:
@@ -147,7 +145,7 @@ function useFilteredUsers() {
 function ShowcaseHeader() {
   return (
     <section className={styles.mobileMarginAdjust + " text--center"}>
-      <Heading as="h1" className={styles.hideOnMobile}>
+      <Heading as='h1' className={styles.hideOnMobile}>
         AI Short
       </Heading>
       <p>{DESCRIPTION}</p>
@@ -189,15 +187,15 @@ function ShowcaseFilters({ onToggleDescription }) {
 
   // 提前调用 Translate 组件以确保 Hooks 的调用顺序一致
   const togglePromptLanguage = (
-    <Translate id="toggle_prompt_language">切换 Prompt 语言</Translate>
+    <Translate id='toggle_prompt_language'>切换 Prompt 语言</Translate>
   );
 
   return (
-    <section className="container margin-top--l margin-bottom--lg">
+    <section className='container margin-top--l margin-bottom--lg'>
       <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
         <div>
-          <Heading as="h2">
-            <Translate id="showcase.filters.title">Filters</Translate>
+          <Heading as='h2'>
+            <Translate id='showcase.filters.title'>Filters</Translate>
           </Heading>
           <div className={styles.hideOnMobile}>
             <span>{siteCountPlural(filteredUsers.length)}</span>
@@ -210,8 +208,7 @@ function ShowcaseFilters({ onToggleDescription }) {
             title={translate({
               id: "toggle_prompt_language_description",
               message: "更改提示词的显示语言，在英语和页面当前语言之间切换。",
-            })}
-          >
+            })}>
             {togglePromptLanguage}
           </button>
         )}
@@ -228,10 +225,9 @@ function ShowcaseFilters({ onToggleDescription }) {
                 message:
                   "你添加或制作过的个人提示词，可用于存放AiShort之外的提示词。",
               })}
-              anchorEl="#__docusaurus"
-            >
+              anchorEl='#__docusaurus'>
               <ShowcaseTagSelect
-                tag="yourprompt"
+                tag='yourprompt'
                 label={translate({
                   message: "你的提示词",
                 })}
@@ -259,8 +255,7 @@ function ShowcaseFilters({ onToggleDescription }) {
               <ShowcaseTooltip
                 id={id}
                 text={description}
-                anchorEl="#__docusaurus"
-              >
+                anchorEl='#__docusaurus'>
                 <ShowcaseTagSelect
                   tag={tag}
                   id={id}
@@ -354,7 +349,7 @@ function SearchBar() {
   return (
     <div className={styles.searchContainer}>
       <input
-        id="searchbar"
+        id='searchbar'
         placeholder={translate({
           message: "Search for prompts...",
           id: "showcase.searchBar.placeholder",
@@ -437,10 +432,10 @@ function ShowcaseCards({ isDescription }) {
 
   if (filteredUsers.length === 0) {
     return (
-      <section className="margin-top--lg margin-bottom--xl">
-        <div className="container padding-vert--md text--center">
-          <Heading as="h2">
-            <Translate id="showcase.usersList.noResult">
+      <section className='margin-top--lg margin-bottom--xl'>
+        <div className='container padding-vert--md text--center'>
+          <Heading as='h2'>
+            <Translate id='showcase.usersList.noResult'>
               😒 找不到结果，请缩短搜索词
             </Translate>
           </Heading>
@@ -451,19 +446,18 @@ function ShowcaseCards({ isDescription }) {
   }
 
   return (
-    <section className="margin-top--lg margin-bottom--xl">
+    <section className='margin-top--lg margin-bottom--xl'>
       {filteredUsers.length === sortedUsers.length ? (
         <>
           <div className={styles.showcaseFavorite}>
-            <div className="container">
+            <div className='container'>
               <div
                 className={clsx(
                   "margin-bottom--md",
                   styles.showcaseFavoriteHeader
-                )}
-              >
-                <Heading as="h2">
-                  <Translate id="showcase.favoritesList.title">
+                )}>
+                <Heading as='h2'>
+                  <Translate id='showcase.favoritesList.title'>
                     Our favorites
                   </Translate>
                 </Heading>
@@ -473,7 +467,7 @@ function ShowcaseCards({ isDescription }) {
               <ul className={clsx("clean-list", styles.showcaseList)}>
                 {favoriteUsers.map((user) => (
                   <ShowcaseCardMemo
-                    key={user.zh.title}
+                    key={user.id}
                     user={user}
                     isDescription={isDescription}
                     copyCount={copyCounts[user.id] || 0}
@@ -484,16 +478,16 @@ function ShowcaseCards({ isDescription }) {
               </ul>
             </div>
           </div>
-          <div className="container margin-top--lg">
-            <Heading as="h2" className={styles.showcaseHeader}>
-              <Translate id="showcase.usersList.allUsers">
+          <div className='container margin-top--lg'>
+            <Heading as='h2' className={styles.showcaseHeader}>
+              <Translate id='showcase.usersList.allUsers'>
                 All prompts
               </Translate>
             </Heading>
             <ul className={clsx("clean-list", styles.showcaseList)}>
               {displayedOtherUsers.map((user) => (
                 <ShowcaseCardMemo
-                  key={user.zh.title}
+                  key={user.id}
                   user={user}
                   isDescription={isDescription}
                   copyCount={copyCounts[user.id] || 0}
@@ -503,13 +497,12 @@ function ShowcaseCards({ isDescription }) {
               ))}
             </ul>
             {!showAllOtherUsers && otherUsers.length > 50 && (
-              <Space direction="vertical" style={{ width: "100%" }}>
+              <Space direction='vertical' style={{ width: "100%" }}>
                 <Button
-                  size="large"
+                  size='large'
                   icon={<ArrowDownOutlined />}
                   onClick={() => setShowAllOtherUsers(true)}
-                  block
-                >
+                  block>
                   <Translate>加载更多</Translate>
                 </Button>
               </Space>
@@ -517,16 +510,18 @@ function ShowcaseCards({ isDescription }) {
           </div>
         </>
       ) : (
-        <div className="container">
+        <div className='container'>
           <div
-            className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
-          >
+            className={clsx(
+              "margin-bottom--md",
+              styles.showcaseFavoriteHeader
+            )}>
             <SearchBar />
           </div>
           <ul className={clsx("clean-list", styles.showcaseList)}>
             {filteredUsers.map((user) => (
               <ShowcaseCardMemo
-                key={user.zh.title}
+                key={user.id}
                 user={user}
                 isDescription={isDescription}
                 copyCount={copyCounts[user.id] || 0}
@@ -550,14 +545,19 @@ export default function Showcase(): JSX.Element {
   const toggleDescription = useCallback(() => {
     setIsDescription((prevIsDescription) => !prevIsDescription);
   }, []);
+  const { i18n } = useDocusaurusContext();
+  const currentLanguage = i18n.currentLocale.split("-")[0];
   return (
     <Layout title={TITLE} description={DESCRIPTION}>
-      <main className="margin-vert--lg">
+      <main className='margin-vert--lg'>
         <AuthProvider>
           <ShowcaseHeader />
           <ShowcaseFilters onToggleDescription={toggleDescription} />
           <ShowcaseCards isDescription={isDescription} />
         </AuthProvider>
+        {["zh"].includes(currentLanguage) && (
+          <div className="wwads-cn wwads-vertical wwads-sticky" data-id="256" style={{ maxWidth: '180px' }}></div>
+        )}
         <ShareButtons shareUrl={Shareurl} title={TITLE} popOver={false} />
       </main>
     </Layout>

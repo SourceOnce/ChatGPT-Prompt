@@ -180,10 +180,10 @@
   "showcase.usersList.allUsers": {
     "message": "All prompts"
   },
-  "已复制": {
+  "copy.done": {
     "message": "Copied"
   },
-  "复制": {
+  "copy.button": {
     "message": "Copy"
   },
   "theme.ErrorPageContent.title": {
@@ -648,9 +648,6 @@
   "button.resetPassword": {
     "message": "Reset Password"
   },
-  "message.forgotPassword": {
-    "message": "An email to reset your password has been sent to your mailbox."
-  },
   "tabs.forgotPassword": {
     "message": "Forget the password"
   },
@@ -688,7 +685,7 @@
     "message": "Note (optional): You can provide a source explanation for the prompts and include their other language versions here. Additionally, if you have any expansion ideas or specific requirements regarding the prompts, please provide details in this section."
   },
   "message.addprompt.submission": {
-    "message": "We may make appropriate modifications and translations to the prompts you submit and share them on the public page, while acknowledging your username in the entry. Thank you very much for your contribution and understanding."
+    "message": "Would you like to share the prompt on a public page?"
   },
   "message.success1": {
     "message": "Click on the label 'Your Prompt' to view the custom prompts that have been added."
@@ -740,5 +737,41 @@
   },
   "加载更多": {
     "message": "Load More"
+  },
+  "field.id": {
+    "message": "Release time"
+  },
+  "field.upvoteDifference": {
+    "message": "Votes"
+  },
+  "order.ascending": {
+    "message": "Ascending order"
+  },
+  "order.descending": {
+    "message": "Descending order"
+  },
+  "upvote": {
+    "message": "Upvote"
+  },
+  "downvote": {
+    "message": "Downvote"
+  },
+  "分享到社区的提示词": {
+    "message": "Share the prompt word to the community"
+  },
+  "社区提示词": {
+    "message": "Community prompts"
+  },
+  "input.addprompt.share.checked": {
+    "message": "Yes"
+  },
+  "input.addprompt.share.unchecked": {
+    "message": "No"
+  },
+  "探索由 Aishort 用户分享的创新提示词集合，这些独特且有趣的提示词可以激发你在创作短视频、小说、游戏等内容时的灵感。投票支持你最爱的提示，将它们复制并与你的朋友分享。让 Aishort 帮助你打开创造力的大门，一起创作出色的作品吧。": {
+    "message": "Explore the collection of innovative prompts shared by Aishort users, these unique and fun prompts can inspire you when creating short videos, novels, games and more. Vote for your favorite prompts, copy them and share them with your friends. Let Aishort help you open the door to creativity and create great work together."
+  },
+  "本页面展示的提示词均由网友分享和上传，我们无法保证内容的准确性、质量或完整性，同时也不对因内容引发的任何法律责任承担责任。如果发现有侵权或者其他问题，可以联系我们进行处理。我们将在收到通知后尽快处理。": {
+    "message": "The prompts displayed on this page are shared and uploaded by netizens, we cannot guarantee the accuracy, quality or completeness of the content, and we also do not take responsibility for any legal liability arising from the content. If you find any infringement or other problems, you can contact us to deal with it. We will deal with it as soon as possible after receiving the notification."
   }
 }

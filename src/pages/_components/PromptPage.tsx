@@ -46,16 +46,16 @@ function PromptPage({ prompt }) {
       if (mainPrompt) {
         copy(mainPrompt);
       }
-      await updateCopyCount(prompt.id);
       setShowCopied(true);
       setTimeout(() => setShowCopied(false), 2000);
+      await updateCopyCount(prompt.id);
     } catch (error) {
       console.error("Error updating copy count:", error);
     }
   }, [prompt.id, mainPrompt]);
 
   let walineLang = currentLanguage;
-  if (!["zh", "ja", "en"].includes(currentLanguage)) {
+  if (!["zh", "ja"].includes(currentLanguage)) {
     walineLang = "en";
   }
 
@@ -77,7 +77,7 @@ function PromptPage({ prompt }) {
                 <span>
                   {title} <Badge count={"Weight: " + weight} style={{ backgroundColor: "#52c41a" }} />
                   <button className={clsx("button button--secondary button--sm", styles.showcaseCardSrcBtn)} type='button' onClick={handleCopyClick}>
-                    {copied ? <Translate id='copy.done'>已复制</Translate> : <Translate id='copy.button'>复制</Translate>}
+                    {copied ? <Translate id='theme.CodeBlock.copied'>已复制</Translate> : <Translate id='theme.CodeBlock.copy'>复制</Translate>}
                   </button>
                   {/* <Button type="text" icon={<HeartOutlined />} /> */}
                 </span>

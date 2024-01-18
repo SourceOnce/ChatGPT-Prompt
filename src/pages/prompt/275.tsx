@@ -83,11 +83,10 @@ const prompt = {
   "website": null,
   "tags": [
     "contribute",
-    "professional",
-    "latest"
+    "professional"
   ],
   "id": 275,
-  "weight": 598
+  "weight": 656
 };
 
 function PromptDetail() {
